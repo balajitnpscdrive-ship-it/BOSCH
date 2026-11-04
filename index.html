@@ -2067,7 +2067,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
               <div class="md:col-span-2">
                 <label class="block text-xs font-medium text-slate-300 mb-1">Google Apps Script Web App Deployment URL (for GitHub Pages)</label>
-                <input type="url" id="cfg-apiUrl" placeholder="https://script.google.com/macros/s/AKfycbwkZKYBUWOwLA0NMcG7RyvhZ3jxC4NC3RxLgiGSgGV6boAMRIwSHx4QiHITblF7zQEZ/exec" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none font-mono">
+                <input type="url" id="cfg-apiUrl" value="https://script.google.com/macros/s/AKfycbwkZKYBUWOwLA0NMcG7RyvhZ3jxC4NC3RxLgiGSgGV6boAMRIwSHx4QiHITblF7zQEZ/exec" placeholder="https://script.google.com/macros/s/AKfycb.../exec" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none font-mono">
               </div>
               <div>
                 <button type="button" onclick="testBackendApiConnection()" class="w-full px-4 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-xl border border-slate-700 transition flex items-center justify-center space-x-2">
@@ -2351,8 +2351,13 @@
   <!-- APPLICATION ENGINE & ISO PRINT LOGIC v4.0            -->
   <!-- ==================================================== -->
   <script>
+    const DEFAULT_BACKEND_URL = 'https://script.google.com/macros/s/AKfycbwkZKYBUWOwLA0NMcG7RyvhZ3jxC4NC3RxLgiGSgGV6boAMRIwSHx4QiHITblF7zQEZ/exec';
+    const storedApiUrl = localStorage.getItem('bosch_leap_api_url');
+    const activeApiUrl = (storedApiUrl && storedApiUrl.trim().length > 10) ? storedApiUrl.trim() : DEFAULT_BACKEND_URL;
+    try { localStorage.setItem('bosch_leap_api_url', activeApiUrl); } catch(e){}
+
     const AppState = {
-      apiUrl: localStorage.getItem('bosch_leap_api_url') || '',
+      apiUrl: activeApiUrl,
       settings: {
         centerName: 'Bosch LEAP — Shop Floor Technician Training Center',
         centerAddress: 'Plot No. 42, Automotive Tech Park, Industrial Area, City — 641001',
@@ -2428,7 +2433,8 @@
           const resp = await fetch(AppState.apiUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-            body: JSON.stringify({ action: action, params: params })
+            body: JSON.stringify({ action: action, params: params }),
+            redirect: 'follow'
           });
           return await resp.json();
         } catch (fetchErr) {
@@ -2966,7 +2972,7 @@
     async function loadStudentsData() {
       try {
         const res = await callAPI('getStudents');
-        AppState.students = (res && res.status === 'success' && res.data) ? res.data : [];
+        if (res && res.status === 'success' && res.data) { AppState.students = res.data; }
         renderStudentsTable();
         populateTraineeSelects();
       } catch (e) { console.error('Students load error:', e); }
@@ -3454,7 +3460,7 @@
     async function loadInventoryData() {
       try {
         const res = await callAPI('getInventory');
-        AppState.inventory = (res && res.status === 'success' && res.data) ? res.data : [];
+        if (res && res.status === 'success' && res.data) { AppState.inventory = res.data; }
         renderInventoryTable();
         populateEquipmentSelects();
       } catch (e) { console.error('Inventory error:', e); }
@@ -3687,7 +3693,7 @@
     async function loadTimetableData() {
       try {
         const res = await callAPI('getTimetable');
-        AppState.timetable = (res && res.status === 'success' && res.data) ? res.data : [];
+        if (res && res.status === 'success' && res.data) { AppState.timetable = res.data; }
         renderTimetableTable();
       } catch (e) { console.error('Timetable error:', e); }
     }
@@ -3747,7 +3753,7 @@
     async function loadToolIssueData() {
       try {
         const res = await callAPI('getToolIssueLog');
-        AppState.toolIssues = (res && res.status === 'success' && res.data) ? res.data : [];
+        if (res && res.status === 'success' && res.data) { AppState.toolIssues = res.data; }
         renderToolIssueTable();
       } catch (e) { console.error('Tool error:', e); }
     }
@@ -3821,7 +3827,7 @@
     async function loadMaintenanceData() {
       try {
         const res = await callAPI('getMaintenanceLogs');
-        AppState.maintenance = (res && res.status === 'success' && res.data) ? res.data : [];
+        if (res && res.status === 'success' && res.data) { AppState.maintenance = res.data; }
         renderMaintenanceTable();
       } catch (e) { console.error('MNT error:', e); }
     }
@@ -3895,7 +3901,7 @@
     async function loadBreakageData() {
       try {
         const res = await callAPI('getBreakageLogs');
-        AppState.breakage = (res && res.status === 'success' && res.data) ? res.data : [];
+        if (res && res.status === 'success' && res.data) { AppState.breakage = res.data; }
         renderBreakageTable();
       } catch (e) { console.error('Breakage error:', e); }
     }
@@ -3967,7 +3973,7 @@
     async function loadCalibrationData() {
       try {
         const res = await callAPI('getCalibrationRecords');
-        AppState.calibration = (res && res.status === 'success' && res.data) ? res.data : [];
+        if (res && res.status === 'success' && res.data) { AppState.calibration = res.data; }
         renderCalibrationTable();
       } catch (e) { console.error('Cal error:', e); }
     }
@@ -4024,7 +4030,7 @@
     async function loadSafetyData() {
       try {
         const res = await callAPI('getSafetyChecks');
-        AppState.safety = (res && res.status === 'success' && res.data) ? res.data : [];
+        if (res && res.status === 'success' && res.data) { AppState.safety = res.data; }
         renderSafetyTable();
       } catch (e) { console.error('Safety error:', e); }
     }
@@ -4081,7 +4087,7 @@
     async function loadAssessmentData() {
       try {
         const res = await callAPI('getAssessments');
-        AppState.assessments = (res && res.status === 'success' && res.data) ? res.data : [];
+        if (res && res.status === 'success' && res.data) { AppState.assessments = res.data; }
         renderAssessmentTable();
       } catch (e) { console.error('Assessment error:', e); }
     }
@@ -4136,7 +4142,7 @@
     async function loadVisitorData() {
       try {
         const res = await callAPI('getVisitorLogs');
-        AppState.visitors = (res && res.status === 'success' && res.data) ? res.data : [];
+        if (res && res.status === 'success' && res.data) { AppState.visitors = res.data; }
         renderVisitorTable();
       } catch (e) { console.error('Visitor error:', e); }
     }
@@ -4185,7 +4191,7 @@
     async function loadPayrollData() {
       try {
         const res = await callAPI('getSalaryRecords');
-        AppState.payroll = (res && res.status === 'success' && res.data) ? res.data : [];
+        if (res && res.status === 'success' && res.data) { AppState.payroll = res.data; }
         renderPayrollTable();
       } catch (e) { console.error('Payroll error:', e); }
     }
