@@ -46,6 +46,20 @@
 
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+    /* Bulletproof Panel Visibility: Works offline and independent of CDN CSS */
+    .hidden {
+      display: none !important;
+    }
+    .view-panel {
+      display: none;
+    }
+    .view-panel.active-view {
+      display: block !important;
+    }
+    #view-dashboard.active-view, #view-dashboard:not(.hidden) {
+      display: block !important;
+    }
     
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -360,7 +374,7 @@
       <!-- ==================================================== -->
       <!-- VIEW 0: LAB FLOOR QUICK STATION & QR SCANNER (NEW!) -->
       <!-- ==================================================== -->
-      <section id="view-station" class="view-panel hidden space-y-6">
+      <section id="view-station" class="view-panel hidden space-y-6" style="display: none;">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-gradient-to-r from-slate-900 via-slate-850 to-slate-900 p-6 rounded-2xl border border-slate-800 shadow-xl">
           <div>
             <div class="flex items-center space-x-2 text-xs font-semibold text-bosch-red tracking-wider uppercase mb-1">
@@ -502,7 +516,7 @@
       <!-- ==================================================== -->
       <!-- VIEW 1: DASHBOARD                                    -->
       <!-- ==================================================== -->
-      <section id="view-dashboard" class="view-panel space-y-6">
+      <section id="view-dashboard" class="view-panel active-view space-y-6" style="display: block;">
         <!-- Dashboard Top Banner -->
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-gradient-to-r from-slate-900 via-slate-850 to-slate-900 p-6 rounded-2xl border border-slate-800 shadow-xl">
           <div>
@@ -705,7 +719,7 @@
       <!-- ==================================================== -->
       <!-- VIEW 2: TRAINEE ADMISSION HUB (WITH DYNAMIC FIELDS)  -->
       <!-- ==================================================== -->
-      <section id="view-students" class="view-panel hidden space-y-6">
+      <section id="view-students" class="view-panel hidden space-y-6" style="display: none;">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <h2 class="text-xl md:text-2xl font-extrabold text-white">Trainee Admission Hub</h2>
@@ -901,7 +915,7 @@
       <!-- ==================================================== -->
       <!-- VIEW 3: DAILY ATTENDANCE REGISTER                    -->
       <!-- ==================================================== -->
-      <section id="view-attendance" class="view-panel hidden space-y-6">
+      <section id="view-attendance" class="view-panel hidden space-y-6" style="display: none;">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <h2 class="text-xl md:text-2xl font-extrabold text-white">Daily Attendance Hub</h2>
@@ -977,7 +991,7 @@
       <!-- ==================================================== -->
       <!-- VIEW 4: WEEKLY TIMETABLE MAKER                       -->
       <!-- ==================================================== -->
-      <section id="view-timetable" class="view-panel hidden space-y-6">
+      <section id="view-timetable" class="view-panel hidden space-y-6" style="display: none;">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <h2 class="text-xl md:text-2xl font-extrabold text-white">Weekly Training Timetable</h2>
@@ -1075,7 +1089,7 @@
       <!-- ==================================================== -->
       <!-- VIEW 5: LAB INVENTORY & EQUIPMENT QR CODES           -->
       <!-- ==================================================== -->
-      <section id="view-inventory" class="view-panel hidden space-y-6">
+      <section id="view-inventory" class="view-panel hidden space-y-6" style="display: none;">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <h2 class="text-xl md:text-2xl font-extrabold text-white">Lab Inventory & QR Asset Management</h2>
@@ -1201,7 +1215,7 @@
       <!-- ==================================================== -->
       <!-- VIEW 6: TOOL ISSUE & RETURN REGISTER                 -->
       <!-- ==================================================== -->
-      <section id="view-tool-issue" class="view-panel hidden space-y-6">
+      <section id="view-tool-issue" class="view-panel hidden space-y-6" style="display: none;">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <h2 class="text-xl md:text-2xl font-extrabold text-white">Tool Issue & Return Register</h2>
@@ -1293,7 +1307,7 @@
       <!-- ==================================================== -->
       <!-- VIEW 7: PREVENTIVE MAINTENANCE LOG                   -->
       <!-- ==================================================== -->
-      <section id="view-maintenance" class="view-panel hidden space-y-6">
+      <section id="view-maintenance" class="view-panel hidden space-y-6" style="display: none;">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <h2 class="text-xl md:text-2xl font-extrabold text-white">Preventive Maintenance Log</h2>
@@ -1401,7 +1415,7 @@
       <!-- ==================================================== -->
       <!-- VIEW 8: BREAKAGE & NCR LOG                           -->
       <!-- ==================================================== -->
-      <section id="view-breakage" class="view-panel hidden space-y-6">
+      <section id="view-breakage" class="view-panel hidden space-y-6" style="display: none;">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <h2 class="text-xl md:text-2xl font-extrabold text-white">Breakage & Non-Conformance (NCR) Hub</h2>
@@ -1497,7 +1511,7 @@
       <!-- ==================================================== -->
       <!-- VIEW 9: CALIBRATION & GAUGES REGISTER                -->
       <!-- ==================================================== -->
-      <section id="view-calibration" class="view-panel hidden space-y-6">
+      <section id="view-calibration" class="view-panel hidden space-y-6" style="display: none;">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <h2 class="text-xl md:text-2xl font-extrabold text-white">Calibration & Gauges Register</h2>
@@ -1595,7 +1609,7 @@
       <!-- ==================================================== -->
       <!-- VIEW 10: SAFETY & 5S INSPECTION AUDIT                -->
       <!-- ==================================================== -->
-      <section id="view-safety" class="view-panel hidden space-y-6">
+      <section id="view-safety" class="view-panel hidden space-y-6" style="display: none;">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <h2 class="text-xl md:text-2xl font-extrabold text-white">Daily Safety & 5S Audit</h2>
@@ -1729,7 +1743,7 @@
       <!-- ==================================================== -->
       <!-- VIEW 11: ASSESSMENTS & MARKS                         -->
       <!-- ==================================================== -->
-      <section id="view-assessments" class="view-panel hidden space-y-6">
+      <section id="view-assessments" class="view-panel hidden space-y-6" style="display: none;">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <h2 class="text-xl md:text-2xl font-extrabold text-white">Assessments & Practical Marksheet</h2>
@@ -1829,7 +1843,7 @@
       <!-- ==================================================== -->
       <!-- VIEW 12: VISITOR REGISTER                            -->
       <!-- ==================================================== -->
-      <section id="view-visitors" class="view-panel hidden space-y-6">
+      <section id="view-visitors" class="view-panel hidden space-y-6" style="display: none;">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <h2 class="text-xl md:text-2xl font-extrabold text-white">Lab Visitor Register</h2>
@@ -1920,7 +1934,7 @@
       <!-- ==================================================== -->
       <!-- VIEW 13: HR & CSR PAYROLL HUB                        -->
       <!-- ==================================================== -->
-      <section id="view-payroll" class="view-panel hidden space-y-6">
+      <section id="view-payroll" class="view-panel hidden space-y-6" style="display: none;">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <h2 class="text-xl md:text-2xl font-extrabold text-white">HR & CSR Grant Payroll</h2>
@@ -2021,7 +2035,7 @@
       <!-- ==================================================== -->
       <!-- VIEW 14: BRANDING, DYNAMIC LOGOS & GITHUB API        -->
       <!-- ==================================================== -->
-      <section id="view-settings" class="view-panel hidden space-y-6">
+      <section id="view-settings" class="view-panel hidden space-y-6" style="display: none;">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <h2 class="text-xl md:text-2xl font-extrabold text-white">Branding, Dynamic Logos & System Control</h2>
@@ -2053,7 +2067,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
               <div class="md:col-span-2">
                 <label class="block text-xs font-medium text-slate-300 mb-1">Google Apps Script Web App Deployment URL (for GitHub Pages)</label>
-                <input type="url" id="cfg-apiUrl" placeholder="https://script.google.com/macros/s/AKfycby_W9_x0B2sSZh_dWo9Hs8Iw5_WXgvEXZ1yEkV79-2V25ZV0poHHaeHOLx1iErMUgLk/exec" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none font-mono">
+                <input type="url" id="cfg-apiUrl" placeholder="https://script.google.com/macros/s/AKfycbwkZKYBUWOwLA0NMcG7RyvhZ3jxC4NC3RxLgiGSgGV6boAMRIwSHx4QiHITblF7zQEZ/exec" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none font-mono">
               </div>
               <div>
                 <button type="button" onclick="testBackendApiConnection()" class="w-full px-4 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-xl border border-slate-700 transition flex items-center justify-center space-x-2">
@@ -2476,29 +2490,80 @@
     }
 
     function switchView(viewName) {
-      document.querySelectorAll('.view-panel').forEach(panel => panel.classList.add('hidden'));
+      // Hide all panels with both inline style and CSS classes
+      document.querySelectorAll('.view-panel').forEach(panel => {
+        panel.style.setProperty('display', 'none', 'important');
+        panel.classList.add('hidden');
+        panel.classList.remove('active-view');
+      });
+
+      // Reset nav button states
       document.querySelectorAll('.nav-btn').forEach(btn => {
         btn.classList.remove('bg-slate-800', 'text-white', 'border-l-2', 'border-bosch-red');
       });
 
+      // Show requested target view
       const target = document.getElementById('view-' + viewName);
-      if (target) target.classList.remove('hidden');
+      if (target) {
+        target.style.setProperty('display', 'block', 'important');
+        target.classList.remove('hidden');
+        target.classList.add('active-view');
+      }
 
+      // Highlight active nav button
       const navBtn = document.getElementById('nav-' + viewName);
       if (navBtn) {
         navBtn.classList.add('bg-slate-800', 'text-white', 'border-l-2', 'border-bosch-red');
       }
 
+      // Auto-collapse sidebar on mobile/tablet viewports
       const sidebar = document.getElementById('sidebar');
       if (sidebar && !sidebar.classList.contains('-translate-x-full') && window.innerWidth < 1024) {
         sidebar.classList.add('-translate-x-full');
       }
 
-      if (viewName === 'dashboard') {
-        setTimeout(updateDashboardCharts, 100);
-      } else if (viewName === 'station') {
-        renderStationQuickList();
+      // Auto-render view data when navigated to
+      try {
+        if (viewName === 'dashboard') {
+          loadDashboardStats();
+          setTimeout(updateDashboardCharts, 100);
+        } else if (viewName === 'station') {
+          renderStationQuickList();
+        } else if (viewName === 'students') {
+          renderStudentsTable();
+        } else if (viewName === 'inventory') {
+          renderInventoryTable();
+        } else if (viewName === 'attendance') {
+          loadAttendanceForDate();
+        } else if (viewName === 'timetable') {
+          renderTimetableTable();
+        } else if (viewName === 'maintenance') {
+          loadMaintenanceData();
+        } else if (viewName === 'breakage') {
+          loadBreakageData();
+        } else if (viewName === 'calibration') {
+          loadCalibrationData();
+        } else if (viewName === 'tool-issue') {
+          loadToolIssueData();
+        } else if (viewName === 'safety') {
+          loadSafetyData();
+        } else if (viewName === 'assessments') {
+          loadAssessmentData();
+        } else if (viewName === 'visitors') {
+          loadVisitorData();
+        } else if (viewName === 'payroll') {
+          loadPayrollData();
+        } else if (viewName === 'settings') {
+          renderDynamicLogosGrid();
+          applySettingsToUI();
+        }
+      } catch (err) {
+        console.warn('View render handler error for ' + viewName + ':', err);
       }
+
+      // Scroll viewport back to top
+      const mainEl = document.querySelector('main');
+      if (mainEl) mainEl.scrollTop = 0;
     }
 
     function toggleQuickPrintMenu() {
@@ -2540,16 +2605,17 @@
         ]);
       } catch (err) {
         console.warn('Initial sync completed with fallback:', err);
+      } finally {
+        if (icon) icon.classList.remove('fa-spin');
       }
+
       // Re-render UI views with whichever data is available
       renderStudentsTable();
       renderInventoryTable();
       renderTimetableTable();
       renderDynamicLogosGrid();
       loadAttendanceForDate();
-      loadDashboardStats(); finally {
-        if (icon) icon.classList.remove('fa-spin');
-      }
+      loadDashboardStats();
     }
 
     // ── SETTINGS & DYNAMIC LOGOS ───────────────────────────
@@ -3052,6 +3118,12 @@
       badge.className = 'px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 animate-pulse';
       document.getElementById('cam-btn-text').textContent = 'Stop Scanner';
 
+      if (typeof Html5Qrcode === 'undefined') {
+        showToast('Camera QR scanner library is loading or offline. Please enter Asset ID manually below.', 'warning');
+        badge.textContent = 'Idle';
+        document.getElementById('cam-btn-text').textContent = 'Start Camera Scanner';
+        return;
+      }
       const html5Qr = new Html5Qrcode("qr-reader");
       AppState.html5QrScanner = html5Qr;
 
@@ -3498,14 +3570,22 @@
         center: AppState.settings.docControlPrefix
       });
 
-      new QRCode(qrBox, {
-        text: qrData,
-        width: 140,
-        height: 140,
-        colorDark: '#000000',
-        colorLight: '#ffffff',
-        correctLevel: QRCode.CorrectLevel.M
-      });
+      if (typeof QRCode !== 'undefined') {
+        try {
+          new QRCode(qrBox, {
+            text: qrData,
+            width: 140,
+            height: 140,
+            colorDark: '#000000',
+            colorLight: '#ffffff',
+            correctLevel: QRCode.CorrectLevel.M
+          });
+        } catch (e) {
+          qrBox.innerHTML = '<div class="p-3 bg-slate-900 border border-slate-700 text-center text-xs font-mono">QR: ' + item.ItemID + '</div>';
+        }
+      } else {
+        qrBox.innerHTML = '<div class="p-3 bg-slate-900 border border-slate-700 text-center text-xs font-mono">QR: ' + item.ItemID + '</div>';
+      }
 
       document.getElementById('modal-qr').style.display = 'flex';
     }
@@ -4190,65 +4270,77 @@
     }
 
     function updateDashboardCharts(st = {}) {
-      const ctx1 = document.getElementById('chart-trainees')?.getContext('2d');
-      if (ctx1) {
-        if (AppState.charts.trainees) AppState.charts.trainees.destroy();
-        let active = 0, completed = 0, dropped = 0;
-        AppState.students.forEach(s => {
-          if (s.Status === 'Completed') completed++;
-          else if (s.Status === 'Dropped') dropped++;
-          else active++;
-        });
-
-        AppState.charts.trainees = new Chart(ctx1, {
-          type: 'doughnut',
-          data: {
-            labels: ['Active Trainees', 'Completed', 'Dropped Out'],
-            datasets: [{
-              data: [active || 1, completed, dropped],
-              backgroundColor: ['#3b82f6', '#10b981', '#f43f5e'],
-              borderWidth: 0
-            }]
-          },
-          options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: { legend: { position: 'bottom', labels: { color: '#94a3b8', boxWidth: 12 } } },
-            cutout: '70%'
-          }
-        });
+      if (typeof Chart === 'undefined') {
+        console.warn('Chart.js not loaded. Skipping dashboard chart rendering.');
+        return;
       }
-
-      const ctx2 = document.getElementById('chart-inventory')?.getContext('2d');
-      if (ctx2) {
-        if (AppState.charts.inventory) AppState.charts.inventory.destroy();
-        const catCounts = {};
-        AppState.inventory.forEach(i => {
-          const c = i.Category || 'General';
-          catCounts[c] = (catCounts[c] || 0) + 1;
-        });
-
-        AppState.charts.inventory = new Chart(ctx2, {
-          type: 'bar',
-          data: {
-            labels: Object.keys(catCounts).length ? Object.keys(catCounts) : ['Diagnostics', 'Hand Tools', 'Electrical', 'Mechanical'],
-            datasets: [{
-              label: 'Equipment Count',
-              data: Object.values(catCounts).length ? Object.values(catCounts) : [4, 12, 6, 8],
-              backgroundColor: '#EA0016',
-              borderRadius: 6
-            }]
-          },
-          options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-              x: { grid: { display: false }, ticks: { color: '#94a3b8' } },
-              y: { grid: { color: '#1e293b' }, ticks: { color: '#94a3b8', precision: 0 } }
-            },
-            plugins: { legend: { display: false } }
+      try {
+        const ctx1 = document.getElementById('chart-trainees')?.getContext('2d');
+        if (ctx1) {
+          if (AppState.charts.trainees) {
+            try { AppState.charts.trainees.destroy(); } catch(e){}
           }
-        });
+          let active = 0, completed = 0, dropped = 0;
+          AppState.students.forEach(s => {
+            if (s.Status === 'Completed') completed++;
+            else if (s.Status === 'Dropped') dropped++;
+            else active++;
+          });
+
+          AppState.charts.trainees = new Chart(ctx1, {
+            type: 'doughnut',
+            data: {
+              labels: ['Active Trainees', 'Completed', 'Dropped Out'],
+              datasets: [{
+                data: [active || 1, completed, dropped],
+                backgroundColor: ['#3b82f6', '#10b981', '#f43f5e'],
+                borderWidth: 0
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: { legend: { position: 'bottom', labels: { color: '#94a3b8', boxWidth: 12 } } },
+              cutout: '70%'
+            }
+          });
+        }
+
+        const ctx2 = document.getElementById('chart-inventory')?.getContext('2d');
+        if (ctx2) {
+          if (AppState.charts.inventory) {
+            try { AppState.charts.inventory.destroy(); } catch(e){}
+          }
+          const catCounts = {};
+          AppState.inventory.forEach(i => {
+            const c = i.Category || 'General';
+            catCounts[c] = (catCounts[c] || 0) + 1;
+          });
+
+          AppState.charts.inventory = new Chart(ctx2, {
+            type: 'bar',
+            data: {
+              labels: Object.keys(catCounts).length ? Object.keys(catCounts) : ['Diagnostics', 'Hand Tools', 'Electrical', 'Mechanical'],
+              datasets: [{
+                label: 'Equipment Count',
+                data: Object.values(catCounts).length ? Object.values(catCounts) : [4, 12, 6, 8],
+                backgroundColor: '#EA0016',
+                borderRadius: 6
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              scales: {
+                x: { grid: { display: false }, ticks: { color: '#94a3b8' } },
+                y: { grid: { color: '#1e293b' }, ticks: { color: '#94a3b8', precision: 0 } }
+              },
+              plugins: { legend: { display: false } }
+            }
+          });
+        }
+      } catch (err) {
+        console.warn('Chart render error:', err);
       }
     }
 
@@ -4678,14 +4770,22 @@
           const el = document.getElementById('print-qr-' + idx);
           if (el) {
             el.innerHTML = '';
-            new QRCode(el, {
-              text: JSON.stringify({ id: item.ItemID, name: item.ItemName, sn: item.SerialNumber, loc: item.Location }),
-              width: 72,
-              height: 72,
-              colorDark: '#000000',
-              colorLight: '#ffffff',
-              correctLevel: QRCode.CorrectLevel.M
-            });
+            if (typeof QRCode !== 'undefined') {
+              try {
+                new QRCode(el, {
+                  text: JSON.stringify({ id: item.ItemID, name: item.ItemName, sn: item.SerialNumber, loc: item.Location }),
+                  width: 72,
+                  height: 72,
+                  colorDark: '#000000',
+                  colorLight: '#ffffff',
+                  correctLevel: QRCode.CorrectLevel.M
+                });
+              } catch (e) {
+                el.innerHTML = '<div class="text-[9px] font-mono border border-black p-1 text-center font-bold">' + item.ItemID + '</div>';
+              }
+            } else {
+              el.innerHTML = '<div class="text-[9px] font-mono border border-black p-1 text-center font-bold">' + item.ItemID + '</div>';
+            }
           }
         });
       }, 100);
@@ -5053,12 +5153,98 @@
       printStudentAdmission(null);
     }
 
-    // ── INITIALIZATION ─────────────────────────────────────
-    window.addEventListener('DOMContentLoaded', () => {
-      startClock();
-      refreshAllData();
-      switchView('dashboard');
-    });
+    // ── INITIALIZATION & GLOBAL FUNCTION REGISTRATIONS ─────
+    function initApp() {
+      try { startClock(); } catch (e) { console.warn('startClock error:', e); }
+      try { applySettingsToUI(); } catch (e) {}
+      try { renderStudentsTable(); } catch (e) {}
+      try { renderInventoryTable(); } catch (e) {}
+      try { renderTimetableTable(); } catch (e) {}
+      try { renderDynamicLogosGrid(); } catch (e) {}
+      try { loadAttendanceForDate(); } catch (e) {}
+      try { switchView('dashboard'); } catch (e) {}
+      try { refreshAllData(); } catch (e) { console.warn('Initial sync error:', e); }
+    }
+
+    // Expose all interactive functions on window for inline event handlers
+    window.AppState = AppState;
+    window.switchView = switchView;
+    window.toggleElement = toggleElement;
+    window.closeModal = closeModal;
+    window.refreshAllData = refreshAllData;
+    window.toggleQuickPrintMenu = toggleQuickPrintMenu;
+    window.openPrintModal = openPrintModal;
+    window.closePrintModal = closePrintModal;
+    window.executeA4Print = executeA4Print;
+    window.applyPrintHeaderOverrides = applyPrintHeaderOverrides;
+    window.previewBrandingHeader = previewBrandingHeader;
+    window.handleSettingsSubmit = handleSettingsSubmit;
+    window.testBackendApiConnection = testBackendApiConnection;
+    window.openAddLogoModal = openAddLogoModal;
+    window.openEditLogoModal = openEditLogoModal;
+    window.handleSaveLogoSubmit = handleSaveLogoSubmit;
+    window.deleteLogo = deleteLogo;
+    window.toggleLogoActive = toggleLogoActive;
+    window.previewModalLogoFile = previewModalLogoFile;
+    window.handleStudentSubmit = handleStudentSubmit;
+    window.filterStudentsTable = filterStudentsTable;
+    window.addCustomFieldRow = addCustomFieldRow;
+    window.removeCustomFieldRow = removeCustomFieldRow;
+    window.previewStudentPhoto = previewStudentPhoto;
+    window.openLiveCameraModal = openLiveCameraModal;
+    window.captureWebcamSnapshot = captureWebcamSnapshot;
+    window.acceptWebcamPhoto = acceptWebcamPhoto;
+    window.closeLiveCameraModal = closeLiveCameraModal;
+    window.toggleCameraScanner = toggleCameraScanner;
+    window.handleManualAssetSearch = handleManualAssetSearch;
+    window.selectEquipmentForStation = selectEquipmentForStation;
+    window.openStationSubAction = openStationSubAction;
+    window.handleStationMaintainSubmit = handleStationMaintainSubmit;
+    window.handleStationBreakageSubmit = handleStationBreakageSubmit;
+    window.handleStationIssueSubmit = handleStationIssueSubmit;
+    window.handleStationCalibrateSubmit = handleStationCalibrateSubmit;
+    window.printSingleQRLabelFromStation = printSingleQRLabelFromStation;
+    window.saveAttendanceSession = saveAttendanceSession;
+    window.markAllAttendance = markAllAttendance;
+    window.loadAttendanceForDate = loadAttendanceForDate;
+    window.handleTimetableSubmit = handleTimetableSubmit;
+    window.deleteTimetableSlot = deleteTimetableSlot;
+    window.handleInventorySubmit = handleInventorySubmit;
+    window.filterInventoryTable = filterInventoryTable;
+    window.viewItemQRCode = viewItemQRCode;
+    window.printSingleQRLabel = printSingleQRLabel;
+    window.handleToolIssueSubmit = handleToolIssueSubmit;
+    window.returnToolPrompt = returnToolPrompt;
+    window.handleMaintenanceSubmit = handleMaintenanceSubmit;
+    window.closeMaintenancePrompt = closeMaintenancePrompt;
+    window.handleBreakageSubmit = handleBreakageSubmit;
+    window.updateBreakageDisposition = updateBreakageDisposition;
+    window.handleCalibrationSubmit = handleCalibrationSubmit;
+    window.handleSafetySubmit = handleSafetySubmit;
+    window.handleAssessmentSubmit = handleAssessmentSubmit;
+    window.handleVisitorSubmit = handleVisitorSubmit;
+    window.handlePayrollSubmit = handlePayrollSubmit;
+    window.printStudentAdmission = printStudentAdmission;
+    window.printStudentIDCard = printStudentIDCard;
+    window.printAllStudentsList = printAllStudentsList;
+    window.printAttendanceSheet = printAttendanceSheet;
+    window.printTimetableDoc = printTimetableDoc;
+    window.printInventoryQRSheet = printInventoryQRSheet;
+    window.printInventoryList = printInventoryList;
+    window.printMaintenanceDoc = printMaintenanceDoc;
+    window.printBreakageDoc = printBreakageDoc;
+    window.printCalibrationDoc = printCalibrationDoc;
+    window.printToolIssueDoc = printToolIssueDoc;
+    window.printSafetyDoc = printSafetyDoc;
+    window.printAssessmentDoc = printAssessmentDoc;
+    window.printVisitorDoc = printVisitorDoc;
+    window.printPayrollDoc = printPayrollDoc;
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initApp);
+    } else {
+      initApp();
+    }
   </script>
 </body>
 </html>
